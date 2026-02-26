@@ -1,0 +1,26 @@
+/task/
+testing/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment / secrets
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+
+# Builds
+dist/
+build/
+
+.cursor/
+
+test-results/
+
+testSim.js
