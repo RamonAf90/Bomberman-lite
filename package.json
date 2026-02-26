@@ -1,0 +1,21 @@
+{
+  "name": "multi-player",
+  "version": "1.0.0",
+  "description": "Bomberman-lite multiplayer game",
+  "type": "module",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node testing/run-all.js",
+    "test:e2e": "npx playwright test"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "socket.io-client": "^4.8.3"
+  }
+}
