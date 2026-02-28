@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiplayer Game</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- JOIN SCREEN -->
+      <section id="screen-join" class="screen active">
+        <div class="logo-wrapper">
+          <t>BOMBERMAN</t>
+          <img src="./assets/logo/bomb-logo.png" alt="Game Logo" class="game-logo" />
+        </div>
+
+        <h1>Start Game</h1>
+
+        <div class="panel">
+          <input
+            type="text"
+            id="player-name-input"
+            placeholder="Enter your name"
+            autocomplete="off"
+          />
+          <button id="join-button">start</button>
+          <p id="join-error" class="error"></p>
+        </div>
+      </section>
+
+      <!-- LOBBY SCREEN -->
+      <section id="screen-lobby" class="screen hidden">
+        <h1>Lobby</h1>
+
+        <!-- ===== PHASE 1: Create / Join ===== -->
+        <div class="lobby-actions" id="lobby-choice">
+
+          <div id="create-section" class="lobby-card">
+            <h2>Create Room</h2>
+            <button id="create-room-btn">Create</button>
+          </div>
+
+          <div id="join-section" class="lobby-card">
+            <h2>Join Room</h2>
+            <input
+              id="room-code-input"
+              placeholder="Enter room code"
+              maxlength="6"
+            />
+            <button id="join-room-btn">Join</button>
+          </div>
+
+          <div id="username-section" class="lobby-card">
+            <h2>Username</h2>
+            <p id="current-username" class="current-username">Unknown</p>
+            <button id="change-name-choice-btn">Change Username</button>
+          </div>
+        </div>
+
+        <!-- ===== PHASE 2: Layout Wrapper ===== -->
+        <div class="lobby-layout">
+
+          <!-- LEFT SIDE -->
+          <div class="lobby-left">
+
+            <!-- Room Info -->
+            <div id="room-section" class="hidden">
+              <span>Room Code</span>
+              <div class="room-code">
+                <code id="room-code">.....</code>
+                <button id="copy-room-code">Copy</button>
+              </div>
+            </div>
+
+            <!-- Players -->
+            <div id="players-section" class="player-list hidden">
+              <h3>Players</h3>
+              <ul id="lobby-player-list"></ul>
+            </div>
+
+            <!-- Lobby Controls -->
+            <div class="lobby-footer hidden" id="lobby-footer">
+              <button id="ready-btn">Ready</button>
+              <button id="start-btn" disabled>Start Game</button>
+              <button id="add-bot-btn" disabled>Add Bot</button>
+              <button id="leave-btn">Leave</button>
+            </div>
+
+          </div>
+
+          <!-- RIGHT SIDE -->
+          <div class="lobby-right">
+
+            <!-- Chat -->
+            <div id="chat-section" class="chat hidden">
+              <h3>Chat</h3>
+              <div id="chat-messages" class="chat-messages"></div>
+              <div class="chat-input">
+                <input id="chat-input" placeholder="Type a message..." maxlength="300" />
+                <button id="chat-send-btn">Send</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p id="lobby-error" class="error"></p>
+
+      </section>
+
+      <!-- GAME SCREEN -->
+      <section id="screen-game" class="screen hidden">
+        <div class="game-layout">
+          <!-- LEFT COLUMN -->
+          <div class="game-left">
+            <div class="leaderboard">
+              <h3>Players</h3>
+              <ul id="game-player-list"></ul>
+            </div>
+            <div class="game-controls">
+              <button id="pause-btn">Pause</button>
+              <!-- <button id="mute-btn">Mute</button> 
+              <button id="leave-game-btn">Leave</button> -->
+            </div>
+          </div>
+          <!-- CENTER COLUMN -->
+          <div class="game-center">
+            <div id="hud">
+              <div class="hud-item">Score: <span id="hud-score">0</span></div>
+              <div class="hud-item">Lives: <span id="hud-lives">3</span></div>
+              <div class="hud-item">Time: <span id="hud-timer">0</span></div>
+            </div>
+            <div id="game-root"></div>
+            <div id="win-overlay" class="win-overlay hidden" data-winner>
+              <div class="win-overlay-card">
+                <div id="win-overlay-title" class="win-overlay-title">Winner</div>
+                <div id="win-overlay-text" class="win-overlay-text">Player wins!</div>
+              </div>
+            </div>
+          </div>
+          <!-- RIGHT COLUMN -->
+          <div class="game-right">
+            <div id="game-chat" class="chat">
+              <h3>Chat</h3>
+              <div id="game-chat-messages" class="chat-messages"></div>
+              <div class="chat-input">
+                <input id="game-chat-input" placeholder="Type a message..." maxlength="300" />
+                <button id="game-chat-send-btn">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAUSE SCREEN -->
+      <section id="screen-pause" class="screen hidden">
+        <h1>Paused</h1>
+        <button id="resume-button">Resume</button>
+        <button id="quit-button">Quit</button>
+      </section>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
